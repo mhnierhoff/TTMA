@@ -1,0 +1,74 @@
+---
+output:
+  html_document:
+    bibliography: bibtex
+    highlight: tango
+    keep_md: yes
+    theme: spacelab
+---
+
+### Last Update
+
+```{r}
+Sys.time()
+```
+
+***
+
+### Data Set
+
+The data sets have been directly retrived with an own Twitter application.
+
+***
+
+### Notices
+
+This application is primarily a demo to show what is possible. 
+
+In case of any questions related to this application, feel free to write [me a mail.][1]
+
+***
+
+### Used R Packages
+
+```{r, eval=FALSE}
+library(devtools)
+library(rjson)
+library(bit64)
+library(httr)
+library(twitteR)
+library(NLP)
+library(tm)
+library(SnowballC)
+library(slam)
+library(RWeka)
+library(rJava) 
+library(RWekajars) 
+library(graph)
+library(grid)
+library(Rgraphviz)
+library(ggplot2)
+library(wordcloud)
+library(RColorBrewer)
+library(qdap)
+library(magrittr)
+library(googleVis)
+```
+
+***
+
+### Last Session Info
+
+```{r}
+sessionInfo()
+```
+
+***
+
+### References
+
+
+
+[1]: http://nierhoff.info/#contact "Contact"
+
+***
