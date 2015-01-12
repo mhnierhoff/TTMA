@@ -15,7 +15,9 @@ suppressPackageStartupMessages(c(
         library(twitteR),
         library(NLP),
         library(tm),
+        library(shinyIncubator),
         library(grid),
+        library(pvclust),
         library(Rgraphviz),
         library(qdapTools),
         library(qdapRegex),
@@ -31,7 +33,20 @@ suppressPackageStartupMessages(c(
 
 
 shinyServer(function(input, output, session) {
+
+############################### ~~~~~~~~~~~~~~~~~ ##############################
         
+## Getting the data 
+
+        getTdm <- reactive({
+                switch(input$tdm,
+                       "FAZ" = tdmFAZ,
+                       "SZ" = tdmSZ,
+                       "taz" = tdmtaz)
+        })
+
+
+                
         myOptions <- reactive({
                 list(
                         page=ifelse(input$pageable==TRUE,'enable','disable'),
@@ -45,33 +60,48 @@ shinyServer(function(input, output, session) {
 ## NAVTAB 1 - Wordcloud and Word-Letter Ratio Plot
 
         ## Tabset 1
-        output$wordPlot <- renderPlot({
-                
-                m <- as.matrix(tdmFAZ)
+
+        wordPlotInput <- function() {
+                m <- as.matrix(getTdm())
                 # calculate the frequency of words and sort it by frequency 
                 word.freq <- sort(rowSums(m), decreasing = TRUE)
                 wordcloud(words = names(word.freq), 
                           freq = word.freq, 
-                          min.freq = 10,
+                          min.freq = input$minfreqWord,
                           random.order = FALSE, 
                           colors=brewer.pal(6, "Dark2"))
+        }
+
+        output$wordPlot <- renderPlot({                        
                 
+                wordPlotInput()
+
         })
         
         ## Tabset 2
+
+        ratioPlotInput <- function() {
+                
+                words <- getTdm()  %>%
+                         as.matrix %>%
+                         colnames  %>%
+                         (function(x) x[nchar(x) < 20])
+                
+                data.frame(nletters = nchar(words)) %>%
+                        ggplot(aes(x = nletters)) +
+                        geom_histogram(binwidth = 1) +
+                        geom_vline(xintercept = mean(nchar(words)),
+                                   color = "red", size = 1, alpha = 0.5) +
+                        labs(title = "Most Frequent Terms") +
+                        labs(y = "Number of Words") + 
+                        labs(x = "Number of Letters") +
+                        theme_bw()
+                
+        }
+        
         output$ratioPlot <- renderPlot({
-        
-                words <- tdmFAZ  %>%
-                        as.matrix %>%
-                        colnames  %>%
-                        (function(x) x[nchar(x) < 20])
-        
-                data.frame(nletters=nchar(words)) %>%
-                        ggplot(aes(x=nletters)) +
-                        geom_histogram(binwidth=1) +
-                        geom_vline(xintercept=mean(nchar(words)),
-                                   color="red", size=1, alpha=.5) +
-                        labs(x="Number of Letters", y="Number of Words")
+                
+                ratioPlotInput()
         
         })
 
@@ -79,25 +109,40 @@ shinyServer(function(input, output, session) {
         
 ## NAVTAB 2 - Association Plot
 
-        output$assocPlot <- renderPlot({
-                plot(tdmFAZ, term = freq.terms, corThreshold = 0.08, 
+        assocPlotInput <- function() {
+                
+                freq.terms <- findFreqTerms(getTdm(), lowfreq = input$lowfreqAssoc)
+                
+                plot(getTdm(), term = freq.terms, 
+                     corThreshold = 0.08, 
                      weighting = TRUE)
+        }
+
+        output$assocPlot <- renderPlot({
+                
+                input$goAssocButton
+                
+                assocPlotInput()
+                
         })
 
 ############################### ~~~~~~~~3~~~~~~~~ ##############################
 
 ## NAVTAB 3 - Cluster Dendrogram
 
+        clusterPlotInput <- function() {
+                
+                # Ward Hierarchical Clustering with Bootstrapped p values
+                fit <- pvclust(getTdm(), method.hclust="ward",
+                               method.dist="euclidean")
+                plot(fit) # dendogram with p values
+                # add rectangles around groups highly supported by the data
+                pvrect(fit, alpha=.95)
+        }
+        
         output$clusterPlot <- renderPlot({
         
-                tdmFAZ2 <- removeSparseTerms(tdmFAZ, sparse = 0.95) 
-                m2 <- as.matrix(tdmFAZ2)
-                # Cluster terms
-                distMatrix <- dist(scale(m2))
-                fit <- hclust(distMatrix, method = "ward.D")
-        
-                plot(fit)
-                rect.hclust(fit, k = 4)
+                clusterPlotInput()
         
         })
 
@@ -108,8 +153,8 @@ shinyServer(function(input, output, session) {
         ## Tabset Tab 1
         output$freqPlot <- renderPlot({
                 
-                freq.terms <- findFreqTerms(tdmFAZ, lowfreq = 35)
-                term.freq <- rowSums(as.matrix(tdmFAZ))
+                freq.terms <- findFreqTerms(tdmtaz, lowfreq = 35)
+                term.freq <- rowSums(as.matrix(tdmtaz))
                 term.freq <- subset(term.freq, term.freq >= 35)
         
                 df <- data.frame(term = names(term.freq), freq = term.freq)

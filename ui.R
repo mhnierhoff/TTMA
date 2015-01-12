@@ -15,7 +15,9 @@ suppressPackageStartupMessages(c(
         library(twitteR),
         library(NLP),
         library(tm),
+        library(shinyIncubator),
         library(grid),
+        library(pvclust),
         library(Rgraphviz),
         library(qdapTools),
         library(qdapRegex),
@@ -42,11 +44,18 @@ shinyUI(navbarPage("Twitter Text Mining",
                  sidebarLayout(
                                   
                          sidebarPanel(
-                                            
-                                 radioButtons("plotType", "Plot type",
-                                              c("Scatter"="p", "Line"="l")
-                                            )
-                                    ),
+                                 radioButtons(inputId = "tdm",
+                                              label = "Select Twitter account:",
+                                              choices = c("FAZ", "SZ", "taz"),
+                                              selected = "FAZ"),
+                                 
+                                 tags$hr(),
+                                 
+                                 sliderInput("minfreqWord", 
+                                             label = "Minimum frequency of words:",
+                                             min = 5, max = 25, value = 10)
+                                 
+                         ),
                          
                          mainPanel(
                                  
@@ -74,12 +83,28 @@ shinyUI(navbarPage("Twitter Text Mining",
                  
                  verticalLayout(
                          
-                         wellPanel(
-                                 
-                         sliderInput("n", "Number of points", 10, 200,
-                                     value = 50, step = 10)
-                         ),
-                                 
+                         fluidRow(
+                         column(3, offset = 1,
+                                radioButtons(inputId = "tdm",
+                                             label = "Select Twitter account:",
+                                             choices = c("FAZ", "SZ", "taz"),
+                                             selected = "FAZ",
+                                             inline = TRUE)
+                                ),
+                         
+                         column(3, offset = 1,
+                                sliderInput("lowfreqAssoc", 
+                                            label = "Number of frequent terms:",
+                                            min = 15, max = 25, value = 17)
+                         
+                                 ),
+                         
+                         column(3, offset = 1,
+                                actionButton("goAssocButton", "Plot!")
+
+                         )),         
+                         
+                         tags$hr(),
                          
                          plotOutput("assocPlot")
                          
@@ -95,9 +120,11 @@ shinyUI(navbarPage("Twitter Text Mining",
                  sidebarLayout(
                          
                          sidebarPanel(
-                                 
-                                 sliderInput("n", "Number of points", 10, 200,
-                                             value = 50, step = 10)
+                                 radioButtons(inputId = "tdm",
+                                              label = "Select Twitter account:",
+                                              choices = c("FAZ", "SZ", "taz"),
+                                              selected = "FAZ")
+                                                
                          ),
                          
                          mainPanel(

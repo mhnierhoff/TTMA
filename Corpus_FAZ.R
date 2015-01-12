@@ -39,5 +39,11 @@ FAZCorpus <- tm_map(FAZCorpus, removeWords,
 FAZCorpus <- tm_map(FAZCorpus, removeWords, 
                     stopwords("english"))
 
+# Stem completion
+# FAZCorpusCopy <- FAZCorpus
+# FAZCorpus <- tm_map(FAZCorpus, content_transformer(stemDocument))
+# FAZCorpus <- tm_map(FAZCorpus, content_transformer(stemCompletion), 
+#                    dictonary = FAZCorpusCopy, mc.cores=1)
+
 ## Final corpus
 tdmFAZ <- TermDocumentMatrix(FAZCorpus)

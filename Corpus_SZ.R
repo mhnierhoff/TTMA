@@ -34,7 +34,8 @@ removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
 SZCorpus <- tm_map(SZCorpus, content_transformer(removeURL))
 
 ## Remove stopwords from corpus
-SZCorpus <- tm_map(SZCorpus, removeWords, stopwords("german"))
+SZCorpus <- tm_map(SZCorpus, removeWords, 
+                   c(stopwords("german"), "für", "über"))
 SZCorpus <- tm_map(SZCorpus, removeWords, stopwords("english"))
 
 ## Final corpus
