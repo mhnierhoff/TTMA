@@ -40,12 +40,21 @@ shinyServer(function(input, output, session) {
 
         getTdm <- reactive({
                 switch(input$tdm,
-                       "FAZ" = tdmFAZ,
-                       "SZ" = tdmSZ,
-                       "taz" = tdmtaz)
+                       "Greenpeace" = tdmGreenpeace,
+                       "Amnesty" = tdmAmnesty,
+                       "RedCross" = tdmRedCross)
         })
 
+############################### ~~~~~~~~~~~~~~~~~ ##############################
 
+## Data computations
+
+        #getFreqTerms <- reactive({
+        #        switch(input$freqTerms,
+        #               "Greenpeace" <- findFreqTerms(getTdm()),
+        #               "Amnesty" <- findFreqTerms(getTdm()),
+        #               "RedCross" <- findFreqTerms(getTdm()))
+        #})
                 
         myOptions <- reactive({
                 list(
@@ -119,11 +128,9 @@ shinyServer(function(input, output, session) {
         }
 
         output$assocPlot <- renderPlot({
-                
-                input$goAssocButton
-                
+        
                 assocPlotInput()
-                
+
         })
 
 ############################### ~~~~~~~~3~~~~~~~~ ##############################
@@ -132,18 +139,23 @@ shinyServer(function(input, output, session) {
 
         clusterPlotInput <- function() {
                 
-                # Ward Hierarchical Clustering with Bootstrapped p values
-                fit <- pvclust(getTdm(), method.hclust="ward",
-                               method.dist="euclidean")
-                plot(fit) # dendogram with p values
-                # add rectangles around groups highly supported by the data
-                pvrect(fit, alpha=.95)
+                tdm2 <- removeSparseTerms(getTdm(), sparse = 0.95)
+                m2 <- as.matrix(tdm2)
+                # Cluster terms
+                distMatrix <- dist(scale(m2))
+                fit <- hclust(distMatrix, method = "ward.D")
+                
+                plot(fit)
+                rect.hclust(fit, k = 4)
         }
         
         output$clusterPlot <- renderPlot({
-        
+                
+                isolate({
+                
                 clusterPlotInput()
         
+                })
         })
 
 ############################### ~~~~~~~~4~~~~~~~~ ##############################
@@ -153,8 +165,8 @@ shinyServer(function(input, output, session) {
         ## Tabset Tab 1
         output$freqPlot <- renderPlot({
                 
-                freq.terms <- findFreqTerms(tdmtaz, lowfreq = 35)
-                term.freq <- rowSums(as.matrix(tdmtaz))
+                freq.terms <- findFreqTerms(getTdm(), lowfreq = 35)
+                term.freq <- rowSums(as.matrix(getTdm()))
                 term.freq <- subset(term.freq, term.freq >= 35)
         
                 df <- data.frame(term = names(term.freq), freq = term.freq)

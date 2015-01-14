@@ -46,8 +46,8 @@ shinyUI(navbarPage("Twitter Text Mining",
                          sidebarPanel(
                                  radioButtons(inputId = "tdm",
                                               label = "Select Twitter account:",
-                                              choices = c("FAZ", "SZ", "taz"),
-                                              selected = "FAZ"),
+                                              choices = c("RedCross", "Greenpeace", "Amnesty"),
+                                              selected = "RedCross"),
                                  
                                  tags$hr(),
                                  
@@ -81,33 +81,27 @@ shinyUI(navbarPage("Twitter Text Mining",
 
         tabPanel("Association Plot",
                  
-                 verticalLayout(
+                 sidebarLayout(
                          
-                         fluidRow(
-                         column(3, offset = 1,
-                                radioButtons(inputId = "tdm",
-                                             label = "Select Twitter account:",
-                                             choices = c("FAZ", "SZ", "taz"),
-                                             selected = "FAZ",
-                                             inline = TRUE)
-                                ),
+                         sidebarPanel(
+                                 radioButtons(inputId = "tdm",
+                                              label = "Select Twitter account:",
+                                              choices = c("RedCross", "Greenpeace", "Amnesty"),
+                                              selected = "RedCross"),
+                                 
+                                 tags$hr(),
+                                 
+                                 sliderInput("lowfreqAssoc", 
+                                             label = "Number of frequent terms:",
+                                             min = 10, max = 25, value = 15)
+                                 
+                         ),
                          
-                         column(3, offset = 1,
-                                sliderInput("lowfreqAssoc", 
-                                            label = "Number of frequent terms:",
-                                            min = 15, max = 25, value = 17)
-                         
-                                 ),
-                         
-                         column(3, offset = 1,
-                                actionButton("goAssocButton", "Plot!")
-
-                         )),         
-                         
-                         tags$hr(),
-                         
-                         plotOutput("assocPlot")
-                         
+                         mainPanel(
+                                 
+                                 plotOutput("assocPlot")
+                                 
+                         )
                  )
         ),
  
@@ -122,8 +116,8 @@ shinyUI(navbarPage("Twitter Text Mining",
                          sidebarPanel(
                                  radioButtons(inputId = "tdm",
                                               label = "Select Twitter account:",
-                                              choices = c("FAZ", "SZ", "taz"),
-                                              selected = "FAZ")
+                                              choices = c("RedCross", "Greenpeace", "Amnesty"),
+                                              selected = "RedCross")
                                                 
                          ),
                          
@@ -144,6 +138,11 @@ shinyUI(navbarPage("Twitter Text Mining",
                 sidebarLayout(
                         
                         sidebarPanel(
+                                radioButtons(inputId = "tdm",
+                                             label = "Select Twitter account:",
+                                             choices = c("RedCross", "Greenpeace", "Amnesty"),
+                                             selected = "RedCross"),
+                                
                         
                                 checkboxInput(inputId = "pageable", 
                                       label = "Pageable"),
