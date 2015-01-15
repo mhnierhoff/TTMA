@@ -8,9 +8,9 @@ library(RWeka)
 library(rJava) 
 library(RWekajars) 
 
-load(file = "./dataset/Amnesty_tweets.rda")
+#load(file = "./dataset/Amnesty_tweets.rda")
 
-Amnesty.df <- twListToDF(Amnesty_tweets)
+#Amnesty.df <- twListToDF(Amnesty_tweets)
 
 ## Build the corpus, and specify the source to be character vectors 
 AmnestyCorpus <- Corpus(VectorSource(Amnesty.df$text))
@@ -34,8 +34,6 @@ removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
 AmnestyCorpus <- tm_map(AmnestyCorpus, content_transformer(removeURL))
 
 ## Remove stopwords from corpus
-AmnestyCorpus <- tm_map(AmnestyCorpus, removeWords, 
-                   c(stopwords("german"), "für", "über"))
 AmnestyCorpus <- tm_map(AmnestyCorpus, removeWords, stopwords("english"))
 
 ## Final corpus

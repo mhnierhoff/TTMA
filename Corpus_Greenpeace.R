@@ -34,8 +34,6 @@ removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
 GreenpeaceCorpus <- tm_map(GreenpeaceCorpus, content_transformer(removeURL))
 
 ## Remove stopwords from corpus
-GreenpeaceCorpus <- tm_map(GreenpeaceCorpus, removeWords, 
-                    c(stopwords("german"), "für", "über"))
 GreenpeaceCorpus <- tm_map(GreenpeaceCorpus, removeWords, stopwords("english"))
 
 ## Final corpus

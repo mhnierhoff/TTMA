@@ -34,16 +34,7 @@ removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
 RedCrossCorpus <- tm_map(RedCrossCorpus, content_transformer(removeURL))
 
 ## Remove stopwords from corpus
-RedCrossCorpus <- tm_map(RedCrossCorpus, removeWords, 
-                    c(stopwords("german"), "für", "über"))
-RedCrossCorpus <- tm_map(RedCrossCorpus, removeWords, 
-                    stopwords("english"))
-
-# Stem completion
-# RedCrossCorpusCopy <- RedCrossCorpus
-# RedCrossCorpus <- tm_map(RedCrossCorpus, content_transformer(stemDocument))
-# RedCrossCorpus <- tm_map(RedCrossCorpus, content_transformer(stemCompletion), 
-#                    dictonary = RedCrossCorpusCopy, mc.cores=1)
+RedCrossCorpus <- tm_map(RedCrossCorpus, removeWords, c(stopwords("english"), "amp"))
 
 ## Final corpus
 tdmRedCross <- TermDocumentMatrix(RedCrossCorpus)

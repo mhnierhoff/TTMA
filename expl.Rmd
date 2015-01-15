@@ -32,27 +32,32 @@ In case of any questions related to this application, feel free to write [me a m
 ### Used R Packages
 
 ```{r, eval=FALSE}
+library(graph)
+library(twitteR)
+library(NLP)
+library(tm)
+library(shinyIncubator)
+library(grid)
+library(pvclust)
+library(Rgraphviz)
+library(qdapTools)
+library(qdapRegex)
+library(magrittr)
+library(wordcloud)
+library(RColorBrewer)
+library(ggplot2)
+library(RCurl)
+library(bitops)
+library(qdap)
 library(devtools)
 library(rjson)
 library(bit64)
 library(httr)
-library(twitteR)
-library(NLP)
-library(tm)
 library(SnowballC)
 library(slam)
 library(RWeka)
 library(rJava) 
 library(RWekajars) 
-library(graph)
-library(grid)
-library(Rgraphviz)
-library(ggplot2)
-library(wordcloud)
-library(RColorBrewer)
-library(qdap)
-library(magrittr)
-library(googleVis)
 ```
 
 ***
@@ -62,10 +67,6 @@ library(googleVis)
 ```{r}
 sessionInfo()
 ```
-
-***
-
-### References
 
 
 

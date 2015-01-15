@@ -1,14 +1,6 @@
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
-##                                                                            ##
-##                        Text Mining of Twitter Tweets                       ##
-##                                                                            ##            
-##                    App & Code by Maximilian H. Nierhoff                    ##
-##                                                                            ##
-##                           http://nierhoff.info                             ##
-##                                                                            ##
-##                                                                            ##
-##                                                                            ##
-################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+
+## Text Mining of Twitter Tweets                      
 
 suppressPackageStartupMessages(c(
         library(graph),
@@ -27,10 +19,9 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
-        library(qdap),
-        library(googleVis)))
+        library(qdap)))
 
-shinyUI(navbarPage("Twitter Text Mining",
+shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                    
                    #tags$head(includeScript("ga-rewetm.js")),
 
@@ -44,18 +35,21 @@ shinyUI(navbarPage("Twitter Text Mining",
                  sidebarLayout(
                                   
                          sidebarPanel(
-                                 radioButtons(inputId = "tdm",
+                                 radioButtons(inputId = "tdmwc",
                                               label = "Select Twitter account:",
-                                              choices = c("RedCross", "Greenpeace", "Amnesty"),
+                                              choices = c("RedCross", 
+                                                          "PETA", 
+                                                          "Amnesty", 
+                                                          "Greenpeace"),
                                               selected = "RedCross"),
                                  
                                  tags$hr(),
                                  
                                  sliderInput("minfreqWord", 
                                              label = "Minimum frequency of words:",
-                                             min = 5, max = 25, value = 10)
+                                             min = 5, max = 25, value = 10),
                                  
-                         ),
+                         width = 3),
                          
                          mainPanel(
                                  
@@ -64,7 +58,6 @@ shinyUI(navbarPage("Twitter Text Mining",
                                          tabPanel("Wordcloud",
                                                   
                                                   plotOutput("wordPlot")),
-                                         
                                          
                                          tabPanel("Word-Letter Ratio",
                                                   
@@ -84,18 +77,21 @@ shinyUI(navbarPage("Twitter Text Mining",
                  sidebarLayout(
                          
                          sidebarPanel(
-                                 radioButtons(inputId = "tdm",
+                                 radioButtons(inputId = "tdmap",
                                               label = "Select Twitter account:",
-                                              choices = c("RedCross", "Greenpeace", "Amnesty"),
+                                              choices = c("RedCross", 
+                                                          "PETA", 
+                                                          "Amnesty", 
+                                                          "Greenpeace"),
                                               selected = "RedCross"),
                                  
                                  tags$hr(),
                                  
                                  sliderInput("lowfreqAssoc", 
                                              label = "Number of frequent terms:",
-                                             min = 10, max = 25, value = 15)
+                                             min = 10, max = 25, value = 15),
                                  
-                         ),
+                                 width = 3),
                          
                          mainPanel(
                                  
@@ -114,12 +110,21 @@ shinyUI(navbarPage("Twitter Text Mining",
                  sidebarLayout(
                          
                          sidebarPanel(
-                                 radioButtons(inputId = "tdm",
+                                 radioButtons(inputId = "tdmcd",
                                               label = "Select Twitter account:",
-                                              choices = c("RedCross", "Greenpeace", "Amnesty"),
-                                              selected = "RedCross")
-                                                
-                         ),
+                                              choices = c("RedCross", 
+                                                          "PETA", 
+                                                          "Amnesty", 
+                                                          "Greenpeace"),
+                                              selected = "RedCross"),
+                                 
+                                 tags$hr(),
+                                 
+                                 sliderInput("clusterNumber", 
+                                             label = "Number of terms cluster:",
+                                             min = 3, max = 10, value = 5),
+                                 
+                                 width = 3),
                          
                          mainPanel(
                          
@@ -138,24 +143,21 @@ shinyUI(navbarPage("Twitter Text Mining",
                 sidebarLayout(
                         
                         sidebarPanel(
-                                radioButtons(inputId = "tdm",
+                                radioButtons(inputId = "tdmtf",
                                              label = "Select Twitter account:",
-                                             choices = c("RedCross", "Greenpeace", "Amnesty"),
+                                             choices = c("RedCross", 
+                                                         "PETA", 
+                                                         "Amnesty", 
+                                                         "Greenpeace"),
                                              selected = "RedCross"),
                                 
-                        
-                                checkboxInput(inputId = "pageable", 
-                                      label = "Pageable"),
-                        
-                        
-                                conditionalPanel("input.pageable==true",
-                                         numericInput(
-                                                 inputId = "pagesize",
-                                                 label = "Terms per page",
-                                                 10))    
-                
-                                ),
-                
+                                tags$hr(),
+                                
+                                sliderInput("freqNumber", 
+                                            label = "Number of terms cluster:",
+                                            min = 10, max = 50, value = 25),
+                                
+                                width = 3),
                 
                         mainPanel(
                         
@@ -173,7 +175,7 @@ shinyUI(navbarPage("Twitter Text Mining",
                                         tabPanel("Table",
                         
                                      
-                                                 htmlOutput("mgvisTable"))
+                                                 dataTableOutput("freqTable"))
                                 
                                 )
                         

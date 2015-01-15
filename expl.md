@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-01-12 14:24:01 CET"
+## [1] "2015-01-16 00:03:43 CET"
 ```
 
 ***
@@ -30,27 +30,32 @@ In case of any questions related to this application, feel free to write [me a m
 
 
 ```r
+library(graph)
+library(twitteR)
+library(NLP)
+library(tm)
+library(shinyIncubator)
+library(grid)
+library(pvclust)
+library(Rgraphviz)
+library(qdapTools)
+library(qdapRegex)
+library(magrittr)
+library(wordcloud)
+library(RColorBrewer)
+library(ggplot2)
+library(RCurl)
+library(bitops)
+library(qdap)
 library(devtools)
 library(rjson)
 library(bit64)
 library(httr)
-library(twitteR)
-library(NLP)
-library(tm)
 library(SnowballC)
 library(slam)
 library(RWeka)
 library(rJava) 
 library(RWekajars) 
-library(graph)
-library(grid)
-library(Rgraphviz)
-library(ggplot2)
-library(wordcloud)
-library(RColorBrewer)
-library(qdap)
-library(magrittr)
-library(googleVis)
 ```
 
 ***
@@ -73,14 +78,11 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-## [1] digest_0.6.8    evaluate_0.5.5  formatR_1.0     htmltools_0.2.6
-## [5] knitr_1.8       rmarkdown_0.4.2 stringr_0.6.2   tools_3.1.2    
-## [9] yaml_2.1.13
+##  [1] bit_1.1-12      bit64_0.9-4     DBI_0.3.1       digest_0.6.8   
+##  [5] evaluate_0.5.5  formatR_1.0     htmltools_0.2.6 httr_0.6.1.9000
+##  [9] knitr_1.8       rjson_0.2.15    rmarkdown_0.4.2 stringr_0.6.2  
+## [13] tools_3.1.2     twitteR_1.1.8   yaml_2.1.13
 ```
-
-***
-
-### References
 
 
 
