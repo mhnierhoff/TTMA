@@ -35,7 +35,7 @@ suppressPackageStartupMessages(c(
 
 shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                    
-                   #tags$head(includeScript("ga-rewetm.js")),
+                   tags$head(includeScript("ga-ttma.js")),
 
 
 ############################### ~~~~~~~~1~~~~~~~~ ##############################                   
