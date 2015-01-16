@@ -1,3 +1,17 @@
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+##                                                                            ##
+##                        Text Mining of Twitter Tweets                       ##
+##                                                                            ##            
+##                    App & Code by Maximilian H. Nierhoff                    ##
+##                                                                            ##
+##                           http://nierhoff.info                             ##
+##                                                                            ##
+##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##                                                                            ##
+##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
+##                                                                            ##
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+
 # RedCross Corpus
 library(twitteR)
 library(NLP)

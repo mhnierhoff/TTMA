@@ -1,3 +1,17 @@
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+##                                                                            ##
+##                        Text Mining of Twitter Tweets                       ##
+##                                                                            ##            
+##                    App & Code by Maximilian H. Nierhoff                    ##
+##                                                                            ##
+##                           http://nierhoff.info                             ##
+##                                                                            ##
+##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##                                                                            ##
+##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
+##                                                                            ##
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+
 # Amnesty Corpus
 library(twitteR)
 library(NLP)
@@ -8,9 +22,9 @@ library(RWeka)
 library(rJava) 
 library(RWekajars) 
 
-#load(file = "./dataset/Amnesty_tweets.rda")
+load(file = "./dataset/Amnesty_tweets.rda")
 
-#Amnesty.df <- twListToDF(Amnesty_tweets)
+Amnesty.df <- twListToDF(Amnesty_tweets)
 
 ## Build the corpus, and specify the source to be character vectors 
 AmnestyCorpus <- Corpus(VectorSource(Amnesty.df$text))

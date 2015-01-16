@@ -1,3 +1,17 @@
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+##                                                                            ##
+##                        Text Mining of Twitter Tweets                       ##
+##                                                                            ##            
+##                    App & Code by Maximilian H. Nierhoff                    ##
+##                                                                            ##
+##                           http://nierhoff.info                             ##
+##                                                                            ##
+##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##                                                                            ##
+##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
+##                                                                            ##
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+
 # PETA Corpus
 library(twitteR)
 library(NLP)
@@ -34,7 +48,7 @@ removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
 PETACorpus <- tm_map(PETACorpus, content_transformer(removeURL))
 
 ## Remove stopwords from corpus
-PETACorpus <- tm_map(PETACorpus, removeWords, removeWords, c(stopwords("english"), "amp"))
+PETACorpus <- tm_map(PETACorpus, removeWords, c(stopwords("english"), "amp"))
 
 ## Final corpus
 tdmPETA <- TermDocumentMatrix(PETACorpus)

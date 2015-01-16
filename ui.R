@@ -1,6 +1,16 @@
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
-
-## Text Mining of Twitter Tweets                      
+##                                                                            ##
+##                        Text Mining of Twitter Tweets                       ##
+##                                                                            ##            
+##                    App & Code by Maximilian H. Nierhoff                    ##
+##                                                                            ##
+##                           http://nierhoff.info                             ##
+##                                                                            ##
+##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##                                                                            ##
+##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
+##                                                                            ##
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
 suppressPackageStartupMessages(c(
         library(graph),
@@ -19,6 +29,8 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
+        library(shinyapps),
+        library(BH),
         library(qdap)))
 
 shinyUI(navbarPage("Twitter Text Mining", inverse = F,
@@ -39,8 +51,7 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                                               label = "Select Twitter account:",
                                               choices = c("RedCross", 
                                                           "PETA", 
-                                                          "Amnesty", 
-                                                          "Greenpeace"),
+                                                          "Amnesty"),
                                               selected = "RedCross"),
                                  
                                  tags$hr(),
@@ -62,9 +73,9 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                                          tabPanel("Word-Letter Ratio",
                                                   
                                                   plotOutput("ratioPlot"))
-                                )
+                                ),
                                  
-                        )
+                        width = 6)
                 )
         ),
 
@@ -81,8 +92,7 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                                               label = "Select Twitter account:",
                                               choices = c("RedCross", 
                                                           "PETA", 
-                                                          "Amnesty", 
-                                                          "Greenpeace"),
+                                                          "Amnesty"),
                                               selected = "RedCross"),
                                  
                                  tags$hr(),
@@ -95,9 +105,9 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                          
                          mainPanel(
                                  
-                                 plotOutput("assocPlot")
+                                 plotOutput("assocPlot"),
                                  
-                         )
+                        width = 6)
                  )
         ),
  
@@ -114,8 +124,7 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                                               label = "Select Twitter account:",
                                               choices = c("RedCross", 
                                                           "PETA", 
-                                                          "Amnesty", 
-                                                          "Greenpeace"),
+                                                          "Amnesty"),
                                               selected = "RedCross"),
                                  
                                  tags$hr(),
@@ -128,8 +137,9 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                          
                          mainPanel(
                          
-                                plotOutput("clusterPlot")
-                         )
+                                plotOutput("clusterPlot"),
+                        
+                        width = 6)
                          
                  )
         ),
@@ -147,14 +157,13 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                                              label = "Select Twitter account:",
                                              choices = c("RedCross", 
                                                          "PETA", 
-                                                         "Amnesty", 
-                                                         "Greenpeace"),
+                                                         "Amnesty"),
                                              selected = "RedCross"),
                                 
                                 tags$hr(),
                                 
                                 sliderInput("freqNumber", 
-                                            label = "Number of terms cluster:",
+                                            label = "Minimum frequency of terms:",
                                             min = 10, max = 50, value = 25),
                                 
                                 width = 3),
@@ -177,9 +186,9 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                                      
                                                  dataTableOutput("freqTable"))
                                 
-                                )
+                                ),
                         
-                        )
+                        width = 6)
                 
                 )
         

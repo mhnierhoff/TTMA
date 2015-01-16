@@ -19,13 +19,21 @@ Sys.time()
 
 The data sets have been directly retrived with an own Twitter application.
 
+Related Twitter Accounts:
+
+* [Amnesty International][1]
+
+* [American Red Cross][2]
+
+* [PETA][3]
+
 ***
 
 ### Notices
 
 This application is primarily a demo to show what is possible. 
 
-In case of any questions related to this application, feel free to write [me a mail.][1]
+In case of any questions related to this application, feel free to write [me a mail.][4]
 
 ***
 
@@ -57,7 +65,9 @@ library(SnowballC)
 library(slam)
 library(RWeka)
 library(rJava) 
-library(RWekajars) 
+library(RWekajars)
+library(BH)
+library(shinyapps)
 ```
 
 ***
@@ -70,6 +80,12 @@ sessionInfo()
 
 
 
-[1]: http://nierhoff.info/#contact "Contact"
+[1]: https://twitter.com/amnesty "Amnesty Twitter Account"
+
+[2]: https://twitter.com/RedCross "Red Cross Twitter Account"
+
+[3]: https://twitter.com/peta "PETA Twitter Account"
+
+[4]: http://nierhoff.info/#contact "Contact"
 
 ***

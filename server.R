@@ -1,6 +1,16 @@
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
-
-## Text Mining of Twitter Tweets  
+##                                                                            ##
+##                        Text Mining of Twitter Tweets                       ##
+##                                                                            ##            
+##                    App & Code by Maximilian H. Nierhoff                    ##
+##                                                                            ##
+##                           http://nierhoff.info                             ##
+##                                                                            ##
+##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##                                                                            ##
+##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
+##                                                                            ##
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
 suppressPackageStartupMessages(c(
         library(graph),
@@ -19,7 +29,8 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
-        library(plotly),
+        library(shinyapps),
+        library(BH),
         library(qdap)))
 
 
@@ -35,7 +46,6 @@ shinyServer(function(input, output, session) {
                 switch(input$tdmwc,
                         "PETA" = tdmPETA,
                         "Amnesty" = tdmAmnesty,
-                        "Greenpeace" = tdmGreenpeace,
                         "RedCross" = tdmRedCross)
         })
 
@@ -48,7 +58,7 @@ shinyServer(function(input, output, session) {
                 wordcloud(words = names(word.freq), 
                           freq = word.freq, 
                           min.freq = input$minfreqWord,
-                          random.order = TRUE,
+                          random.order = FALSE,
                           vfont=c("sans serif","bold"),
                           colors=brewer.pal(5, "Set1"))
         }
@@ -94,7 +104,6 @@ shinyServer(function(input, output, session) {
                 switch(input$tdmap,
                        "PETA" = tdmPETA,
                        "Amnesty" = tdmAmnesty,
-                       "Greenpeace" = tdmGreenpeace,
                        "RedCross" = tdmRedCross)
         })
 
@@ -121,10 +130,9 @@ shinyServer(function(input, output, session) {
 
         getTdmcd <- reactive({
                 switch(input$tdmcd,
-                        "PETA" = tdmPETA,
-                        "Amnesty" = tdmAmnesty,
-                        "Greenpeace" = tdmGreenpeace,
-                        "RedCross" = tdmRedCross)
+                       "PETA" = tdmPETA,
+                       "Amnesty" = tdmAmnesty,
+                       "RedCross" = tdmRedCross)
         })
 
 
@@ -152,10 +160,9 @@ shinyServer(function(input, output, session) {
 
         getTdmtf <- reactive({
                 switch(input$tdmtf,
-                        "PETA" = tdmPETA,
-                        "Amnesty" = tdmAmnesty,
-                        "Greenpeace" = tdmGreenpeace,
-                        "RedCross" = tdmRedCross)
+                       "PETA" = tdmPETA,
+                       "Amnesty" = tdmAmnesty,
+                       "RedCross" = tdmRedCross)
         })
 
         ## Tabset Tab 1
