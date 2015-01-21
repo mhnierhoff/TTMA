@@ -7,15 +7,14 @@ output:
     theme: spacelab
 ---
 
-### Last Update
+### Data Set
 
-```{r}
-Sys.time()
+```{r, echo=FALSE}
+a <- read.csv(file = "./amnesty.csv", sep=",", header = TRUE)
+r <- read.csv(file = "./redcross.csv", sep=",", header = TRUE)
+p <- read.csv(file = "./peta.csv", sep=",", header = TRUE)
 ```
 
-***
-
-### Data Set
 
 The data sets have been directly retrived with an own Twitter application.
 
@@ -23,9 +22,15 @@ Related Twitter Accounts:
 
 * [Amnesty International][1]
 
-* [American Red Cross][2]
+        Number of analyzed tweets: `r length(a[,1])`
 
-* [PETA][3]
+* [American Red Cross][2] 
+
+        Number of analyzed tweets: `r length(r[,1])`
+
+* [PETA][3] 
+        
+        Number of analyzed tweets: `r length(p[,1])`
 
 ***
 

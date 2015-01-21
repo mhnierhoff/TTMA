@@ -34,6 +34,6 @@ PETA.df <- twListToDF(PETA_tweets)
 RedCross.df <- twListToDF(RedCross_tweets)
 
 ## Save text column DF as .csv file
-write.csv(Amnesty.df$text, file = "./amnesty.csv")
-write.csv(PETA.df$text, file = "./peta.csv")
-write.csv(RedCross.df$text, file = "./redcross.csv")
+write.csv(Amnesty.df[,1], file = "./amnesty.csv")
+write.csv(PETA.df[,1], file = "./peta.csv")
+write.csv(RedCross.df[,1], file = "./redcross.csv")

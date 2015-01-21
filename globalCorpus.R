@@ -23,9 +23,9 @@ library(rJava)
 library(RWekajars)
 library(memoise)
 
-accounts <- list("PETA" = "peta",
+accounts <- list("Red Cross" = "redcross",
                  "Amnesty" = "amnesty",
-                 "Red Cross" = "redcross")
+                 "PETA" = "peta")
 
 getTermMatrix <- memoise(function(account) {
         if(!(account %in% accounts))
@@ -38,7 +38,7 @@ myCorpus <- Corpus(VectorSource(tweets))
 
 ## Make it work with the new tm package
 myCorpus <- tm_map(myCorpus,
-                   content_transformer(function(x) iconv(x, to="UTF-8-MAC", sub="byte")),
+                   content_transformer(function(x) iconv(x, to="UTF-8", sub="byte")),
                    mc.cores=1)
 
 ## Convert to lower case
@@ -56,7 +56,6 @@ myCorpus <- tm_map(myCorpus, content_transformer(removeURL))
 
 ## Remove stopwords from corpus
 myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("english"), "amp"))
-#myCorpus <- tm_map(myCorpus, removeWords, stopwords("SMART"))
 
 ## Final corpus
 mytdm <- TermDocumentMatrix(myCorpus)

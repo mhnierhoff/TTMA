@@ -1,18 +1,8 @@
 
-### Last Update
-
-
-```r
-Sys.time()
-```
-
-```
-## [1] "2015-01-16 14:27:42 CET"
-```
-
-***
-
 ### Data Set
+
+
+
 
 The data sets have been directly retrived with an own Twitter application.
 
@@ -20,9 +10,15 @@ Related Twitter Accounts:
 
 * [Amnesty International][1]
 
-* [American Red Cross][2]
+        Number of analyzed tweets: 555
 
-* [PETA][3]
+* [American Red Cross][2] 
+
+        Number of analyzed tweets: 401
+
+* [PETA][3] 
+        
+        Number of analyzed tweets: 536
 
 ***
 
@@ -90,8 +86,8 @@ sessionInfo()
 ## loaded via a namespace (and not attached):
 ##  [1] bit_1.1-12      bit64_0.9-4     DBI_0.3.1       digest_0.6.8   
 ##  [5] evaluate_0.5.5  formatR_1.0     htmltools_0.2.6 httr_0.6.1.9000
-##  [9] knitr_1.8       rjson_0.2.15    rmarkdown_0.4.2 stringr_0.6.2  
-## [13] tools_3.1.2     twitteR_1.1.8   yaml_2.1.13
+##  [9] knitr_1.9       memoise_0.2.1   rjson_0.2.15    rmarkdown_0.4.2
+## [13] stringr_0.6.2   tools_3.1.2     twitteR_1.1.8   yaml_2.1.13
 ```
 
 

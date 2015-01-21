@@ -34,11 +34,10 @@ suppressPackageStartupMessages(c(
         library(qdap)))
 
 
-shinyUI(navbarPage("Twitter Text Mining", inverse = F,
+shinyUI(navbarPage("Twitter Text Mining", 
+                 
+                   theme = "customflatly.css",
                    
-                   
-                   
-                   #tags$head(includeScript("ga-ttma.js")),
 
 
 ############################### ~~~~~~~~1~~~~~~~~ ##############################                   
@@ -49,14 +48,14 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                 
                  progressInit(),
                  
+                 tags$head(includeScript("./www/ga-ttma.js")),
+                 
                  sidebarLayout(
                                   
                          sidebarPanel(
                                  radioButtons(inputId = "tdmwc",
                                               label = "Select Twitter account:",
                                               choices = accounts),
-                                
-                                 #actionButton("update", "Change"),        
                          
                                  tags$hr(),
                                  
@@ -64,6 +63,9 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                                              label = "Minimum frequency 
                                              of plotted words:",
                                              min = 5, max = 25, value = 10),
+                                 
+                                 tags$hr(),
+                                 
                                  sliderInput("maxfreqWord", 
                                              "Maximum number 
                                              of plotted words:", 
@@ -90,68 +92,64 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
 
 ############################### ~~~~~~~~2~~~~~~~~ ##############################
 
-## NAVTAB 2 - Associaltion Plot
 
-        tabPanel("Association Plot",
+## NAVTAB 2 - Cluster Dendrogram
+
+tabPanel("Cluster Dendrogram",
+         
+         sidebarLayout(
                  
-                 sidebarLayout(
+                 sidebarPanel(
+                         radioButtons(inputId = "tdmcd",
+                                      label = "Select Twitter account:",
+                                      choices = accounts),
                          
-                         sidebarPanel(
-                                 radioButtons(inputId = "tdmap",
-                                              label = "Select Twitter account:",
-                                              choices = c("RedCross", 
-                                                          "PETA", 
-                                                          "Amnesty"),
-                                              selected = "RedCross"),
-                                 
-                                 tags$hr(),
-                                 
-                                 sliderInput("lowfreqAssoc", 
-                                             label = "Number of frequent terms:",
-                                             min = 10, max = 25, value = 15),
-                                 
-                                 width = 3),
+                         tags$hr(),
                          
-                         mainPanel(
-                                 
-                                 plotOutput("assocPlot"),
-                                 
-                        width = 6)
-                 )
-        ),
- 
+                         sliderInput("clusterNumber", 
+                                     label = "Number of terms cluster:",
+                                     min = 1, max = 10, value = 2),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         plotOutput("clusterPlot"),
+                         
+                         width = 6)
+                 
+         )
+),
+
+
 ############################### ~~~~~~~~3~~~~~~~~ ##############################
 
-## NAVTAB 3 - Cluster Dendrogram
-        
-        tabPanel("Cluster Dendrogram",
+## NAVTAB 3 - Association Plot
+
+tabPanel("Association Plot",
+         
+         sidebarLayout(
                  
-                 sidebarLayout(
+                 sidebarPanel(
+                         radioButtons(inputId = "tdmap",
+                                      label = "Select Twitter account:",
+                                      choices = accounts),
                          
-                         sidebarPanel(
-                                 radioButtons(inputId = "tdmcd",
-                                              label = "Select Twitter account:",
-                                              choices = c("RedCross", 
-                                                          "PETA", 
-                                                          "Amnesty"),
-                                              selected = "RedCross"),
-                                 
-                                 tags$hr(),
-                                 
-                                 sliderInput("clusterNumber", 
-                                             label = "Number of terms cluster:",
-                                             min = 3, max = 10, value = 5),
-                                 
-                                 width = 3),
+                         tags$hr(),
                          
-                         mainPanel(
+                         sliderInput("lowfreqAssoc", 
+                                     label = "Number of frequent terms:",
+                                     min = 10, max = 40, value = 20),
                          
-                                plotOutput("clusterPlot"),
-                        
-                        width = 6)
+                         width = 3),
+                 
+                 mainPanel(
                          
-                 )
-        ),
+                         plotOutput("assocPlot"),
+                         
+                         width = 6)
+         )
+),
 
 ############################### ~~~~~~~~4~~~~~~~~ ##############################
 
@@ -164,16 +162,13 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                         sidebarPanel(
                                 radioButtons(inputId = "tdmtf",
                                              label = "Select Twitter account:",
-                                             choices = c("RedCross", 
-                                                         "PETA", 
-                                                         "Amnesty"),
-                                             selected = "RedCross"),
+                                             choices = accounts),
                                 
                                 tags$hr(),
                                 
                                 sliderInput("freqNumber", 
                                             label = "Minimum frequency of terms:",
-                                            min = 10, max = 50, value = 25),
+                                            min = 10, max = 50, value = 15),
                                 
                                 width = 3),
                 
@@ -212,10 +207,29 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                         column(1,
                                p("")),
                         column(10,
-                               includeMarkdown("./about/expl.md")),
+                               includeMarkdown("./expl.md")),
                         column(1,
                                p(""))
                         )
+                ),
+        
+############################### ~~~~~~~~F~~~~~~~~ ##############################
+
+## Footer
+
+        tags$hr(),
+
+        tags$span(style="color:grey", 
+                  tags$footer(("Last Data Update:"),
+                              Sys.time(),
+                              tags$br(),
+                              ("© 2015 - "), 
+                              tags$a(
+                                      href="http://nierhoff.info",
+                                      target="_blank",
+                                      "Maximilian H. Nierhoff."), 
+                              align = "center")
+                
                 )
         )
 )
