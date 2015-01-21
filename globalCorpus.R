@@ -23,16 +23,15 @@ library(rJava)
 library(RWekajars)
 library(memoise)
 
-accounts <- list("Amnesty" = "amnesty",
-                 "PETA" = "peta",
-                 "RedCross" = "redcross")
+accounts <- list("PETA" = "peta",
+                 "Amnesty" = "amnesty",
+                 "Red Cross" = "redcross")
 
 getTermMatrix <- memoise(function(account) {
         if(!(account %in% accounts))
                 stop("Unknown account")
         
-        tweets <- readLines(sprintf("./%s.csv", account),
-                            encoding="UTF-8")
+        tweets <- readLines(sprintf("./%s.csv", account))
 
 ## Build the corpus, and specify the source to be character vectors 
 myCorpus <- Corpus(VectorSource(tweets))
@@ -61,4 +60,5 @@ myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("english"), "amp"))
 
 ## Final corpus
 mytdm <- TermDocumentMatrix(myCorpus)
+
 })

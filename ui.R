@@ -54,18 +54,20 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                          sidebarPanel(
                                  radioButtons(inputId = "tdmwc",
                                               label = "Select Twitter account:",
-                                              choices = c("RedCross", 
-                                                          "PETA", 
-                                                          "Amnesty"),
-                                              selected = "RedCross"),
+                                              choices = accounts),
                                 
-                                 actionButton("update", "Change"),        
+                                 #actionButton("update", "Change"),        
                          
                                  tags$hr(),
                                  
                                  sliderInput("minfreqWord", 
-                                             label = "Minimum frequency of words:",
+                                             label = "Minimum frequency 
+                                             of plotted words:",
                                              min = 5, max = 25, value = 10),
+                                 sliderInput("maxfreqWord", 
+                                             "Maximum number 
+                                             of plotted words:", 
+                                             min = 1,  max = 200,  value = 100),
                                  
                          width = 3),
                          

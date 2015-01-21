@@ -45,12 +45,12 @@ shinyServer(function(input, output, session) {
 
         getTdm <- reactive({
                 
-                input&update
+                #input&update
                 
-                withProgress(session, {
-                          setProgress(message = "Processing corpus...")
+                #withProgress(session, {
+                #          setProgress(message = "Processing corpus...")
                           getTermMatrix(input$tdmwc)
-                        })
+                #        })
                 
         })
 
@@ -62,15 +62,39 @@ shinyServer(function(input, output, session) {
                 wordcloud(words = names(word.freq), 
                           freq = word.freq, 
                           min.freq = input$minfreqWord,
+                          max.words=input$maxfreqWord,
                           random.order = FALSE,
                           vfont=c("sans serif","bold"),
-                          colors=brewer.pal(5, "Set1"))
+                          colors=brewer.pal(7, "Dark2"))
         }
 
         output$wordPlot <- renderPlot({                        
                 
+                ##########    Adding a progress bar  ##########
+                
+                ## Create a Progress object
+                
+                progress <- shiny::Progress$new()
+                
+                on.exit(progress$close())
+                
+                progress$set(message = "Creating Plot", value = 0)
+                
+                n <- 5
+                
+                for (i in 1:n) {
+                        # Each time through the loop, add another row of data. This is
+                        # a stand-in for a long-running computation.
+                        
+                        # Increment the progress bar, and update the detail text.
+                        progress$inc(1/n, detail = paste("Doing Part", i))
+                        
+                        
                 wordPlotInput()
-
+                
+                # Pause for 0.1 seconds to simulate a long computation.
+                Sys.sleep(0.1)
+                }
         })
         
         ## Tabset 2
