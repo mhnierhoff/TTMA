@@ -33,6 +33,7 @@ suppressPackageStartupMessages(c(
         library(BH),
         library(qdap)))
 
+source("globalCorpus.R")
 
 shinyServer(function(input, output, session) {
 
@@ -43,12 +44,15 @@ shinyServer(function(input, output, session) {
 
 
         getTdm <- reactive({
-                switch(input$tdmwc,
-                        "PETA" = tdmPETA,
-                        "Amnesty" = tdmAmnesty,
-                        "RedCross" = tdmRedCross)
+                
+                input&update
+                
+                withProgress(session, {
+                          setProgress(message = "Processing corpus...")
+                          getTermMatrix(input$tdmwc)
+                        })
+                
         })
-
 
         ## Tabset 1
 

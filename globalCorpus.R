@@ -20,35 +20,45 @@ library(SnowballC)
 library(slam)
 library(RWeka)
 library(rJava) 
-library(RWekajars) 
+library(RWekajars)
+library(memoise)
 
-load(file = "./dataset/RedCross_tweets.rda")
+accounts <- list("Amnesty" = "amnesty",
+                 "PETA" = "peta",
+                 "RedCross" = "redcross")
 
-RedCross.df <- twListToDF(RedCross_tweets)
+getTermMatrix <- memoise(function(account) {
+        if(!(account %in% accounts))
+                stop("Unknown account")
+        
+        tweets <- readLines(sprintf("./%s.csv", account),
+                            encoding="UTF-8")
 
 ## Build the corpus, and specify the source to be character vectors 
-RedCrossCorpus <- Corpus(VectorSource(RedCross.df$text))
+myCorpus <- Corpus(VectorSource(tweets))
 
 ## Make it work with the new tm package
-RedCrossCorpus <- tm_map(RedCrossCorpus,
-                    content_transformer(function(x) iconv(x, to='UTF-8-MAC', sub='byte')),
-                    mc.cores=1)
+myCorpus <- tm_map(myCorpus,
+                   content_transformer(function(x) iconv(x, to="UTF-8-MAC", sub="byte")),
+                   mc.cores=1)
 
 ## Convert to lower case
-RedCrossCorpus <- tm_map(RedCrossCorpus, content_transformer(tolower), lazy = TRUE)
+myCorpus <- tm_map(myCorpus, content_transformer(tolower), lazy = TRUE)
 
 ## Remove punctuation
-RedCrossCorpus <- tm_map(RedCrossCorpus, content_transformer(removePunctuation))
+myCorpus <- tm_map(myCorpus, content_transformer(removePunctuation))
 
 ## Remove numbers
-RedCrossCorpus <- tm_map(RedCrossCorpus, content_transformer(removeNumbers))
+myCorpus <- tm_map(myCorpus, content_transformer(removeNumbers))
 
 ## Remove URLs
 removeURL <- function(x) gsub("http[[:alnum:]]*", "", x) 
-RedCrossCorpus <- tm_map(RedCrossCorpus, content_transformer(removeURL))
+myCorpus <- tm_map(myCorpus, content_transformer(removeURL))
 
 ## Remove stopwords from corpus
-RedCrossCorpus <- tm_map(RedCrossCorpus, removeWords, c(stopwords("english"), "amp"))
+myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("english"), "amp"))
+#myCorpus <- tm_map(myCorpus, removeWords, stopwords("SMART"))
 
 ## Final corpus
-tdmRedCross <- TermDocumentMatrix(RedCrossCorpus)
+mytdm <- TermDocumentMatrix(myCorpus)
+})

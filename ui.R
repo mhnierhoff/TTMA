@@ -33,9 +33,12 @@ suppressPackageStartupMessages(c(
         library(BH),
         library(qdap)))
 
+
 shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                    
-                   tags$head(includeScript("ga-ttma.js")),
+                   
+                   
+                   #tags$head(includeScript("ga-ttma.js")),
 
 
 ############################### ~~~~~~~~1~~~~~~~~ ##############################                   
@@ -43,7 +46,9 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
 ## NAVTAB 1 - Wordcloud and Word-Letter Ratio Plot
 
         tabPanel("Words",
-        
+                
+                 progressInit(),
+                 
                  sidebarLayout(
                                   
                          sidebarPanel(
@@ -53,7 +58,9 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                                                           "PETA", 
                                                           "Amnesty"),
                                               selected = "RedCross"),
-                                 
+                                
+                                 actionButton("update", "Change"),        
+                         
                                  tags$hr(),
                                  
                                  sliderInput("minfreqWord", 
@@ -203,7 +210,7 @@ shinyUI(navbarPage("Twitter Text Mining", inverse = F,
                         column(1,
                                p("")),
                         column(10,
-                               includeMarkdown("expl.md")),
+                               includeMarkdown("./about/expl.md")),
                         column(1,
                                p(""))
                         )
