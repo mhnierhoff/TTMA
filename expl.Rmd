@@ -7,6 +7,13 @@ output:
     theme: spacelab
 ---
 
+### Last Update
+
+```{r}
+Sys.time()
+```
+
+
 ### Data Set
 
 ```{r, echo=FALSE}
@@ -22,15 +29,15 @@ Related Twitter Accounts:
 
 * [Amnesty International][1]
 
-        Number of analyzed tweets: `r length(a[,1])`
+        Number of analyzed tweets after cleaning: `r length(a[,1])`
 
 * [American Red Cross][2] 
 
-        Number of analyzed tweets: `r length(r[,1])`
+        Number of analyzed tweets after cleaning: `r length(r[,1])`
 
 * [PETA][3] 
         
-        Number of analyzed tweets: `r length(p[,1])`
+        Number of analyzed tweets after cleaning: `r length(p[,1])`
 
 ***
 
@@ -61,18 +68,20 @@ library(RColorBrewer)
 library(ggplot2)
 library(RCurl)
 library(bitops)
+library(shinyapps)
+library(BH)
 library(qdap)
-library(devtools)
-library(rjson)
-library(bit64)
-library(httr)
 library(SnowballC)
 library(slam)
 library(RWeka)
 library(rJava) 
 library(RWekajars)
-library(BH)
-library(shinyapps)
+library(memoise)
+library(devtools)
+library(rjson)
+library(bit64)
+library(httr)
+library(plyr)
 ```
 
 ***

@@ -220,10 +220,7 @@ tabPanel("Association Plot",
         tags$hr(),
 
         tags$span(style="color:grey", 
-                  tags$footer(("Last Data Update:"),
-                              Sys.time(),
-                              tags$br(),
-                              ("© 2015 - "), 
+                  tags$footer(("© 2015 - "), 
                               tags$a(
                                       href="http://nierhoff.info",
                                       target="_blank",

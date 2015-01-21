@@ -73,17 +73,22 @@ img {
 
 
 
+<div id="last-update" class="section level3">
+<h3>Last Update</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre>
+<pre><code>## [1] &quot;2015-01-22 00:11:10 CET&quot;</code></pre>
+</div>
 <div id="data-set" class="section level3">
 <h3>Data Set</h3>
 <p>The data sets have been directly retrived with an own Twitter application.</p>
 <p>Related Twitter Accounts:</p>
 <ul>
 <li><p><a href="https://twitter.com/amnesty" title="Amnesty Twitter Account">Amnesty International</a></p>
-<pre><code>Number of analyzed tweets: 555</code></pre></li>
+<pre><code>Number of analyzed tweets after cleaning: 557</code></pre></li>
 <li><p><a href="https://twitter.com/RedCross" title="Red Cross Twitter Account">American Red Cross</a></p>
-<pre><code>Number of analyzed tweets: 401</code></pre></li>
+<pre><code>Number of analyzed tweets after cleaning: 401</code></pre></li>
 <li><p><a href="https://twitter.com/peta" title="PETA Twitter Account">PETA</a></p>
-<pre><code>Number of analyzed tweets: 536</code></pre></li>
+<pre><code>Number of analyzed tweets after cleaning: 548</code></pre></li>
 </ul>
 <hr />
 </div>
@@ -111,18 +116,20 @@ img {
 <span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(RCurl)
 <span class="kw">library</span>(bitops)
+<span class="kw">library</span>(shinyapps)
+<span class="kw">library</span>(BH)
 <span class="kw">library</span>(qdap)
-<span class="kw">library</span>(devtools)
-<span class="kw">library</span>(rjson)
-<span class="kw">library</span>(bit64)
-<span class="kw">library</span>(httr)
 <span class="kw">library</span>(SnowballC)
 <span class="kw">library</span>(slam)
 <span class="kw">library</span>(RWeka)
 <span class="kw">library</span>(rJava) 
 <span class="kw">library</span>(RWekajars)
-<span class="kw">library</span>(BH)
-<span class="kw">library</span>(shinyapps)</code></pre>
+<span class="kw">library</span>(memoise)
+<span class="kw">library</span>(devtools)
+<span class="kw">library</span>(rjson)
+<span class="kw">library</span>(bit64)
+<span class="kw">library</span>(httr)
+<span class="kw">library</span>(plyr)</code></pre>
 <hr />
 </div>
 <div id="last-session-info" class="section level3">

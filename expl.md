@@ -1,4 +1,16 @@
 
+### Last Update
+
+
+```r
+Sys.time()
+```
+
+```
+## [1] "2015-01-22 00:11:10 CET"
+```
+
+
 ### Data Set
 
 
@@ -10,15 +22,15 @@ Related Twitter Accounts:
 
 * [Amnesty International][1]
 
-        Number of analyzed tweets: 555
+        Number of analyzed tweets after cleaning: 557
 
 * [American Red Cross][2] 
 
-        Number of analyzed tweets: 401
+        Number of analyzed tweets after cleaning: 401
 
 * [PETA][3] 
         
-        Number of analyzed tweets: 536
+        Number of analyzed tweets after cleaning: 548
 
 ***
 
@@ -50,18 +62,20 @@ library(RColorBrewer)
 library(ggplot2)
 library(RCurl)
 library(bitops)
+library(shinyapps)
+library(BH)
 library(qdap)
-library(devtools)
-library(rjson)
-library(bit64)
-library(httr)
 library(SnowballC)
 library(slam)
 library(RWeka)
 library(rJava) 
 library(RWekajars)
-library(BH)
-library(shinyapps)
+library(memoise)
+library(devtools)
+library(rjson)
+library(bit64)
+library(httr)
+library(plyr)
 ```
 
 ***
