@@ -17,9 +17,9 @@ Sys.time()
 ### Data Set
 
 ```{r, echo=FALSE}
-a <- read.csv(file = "./amnesty.csv", sep=",", header = TRUE)
-r <- read.csv(file = "./redcross.csv", sep=",", header = TRUE)
-p <- read.csv(file = "./peta.csv", sep=",", header = TRUE)
+a <- read.csv(file = "./data/amnesty.csv", sep=",", header = TRUE)
+r <- read.csv(file = "./data/redcross.csv", sep=",", header = TRUE)
+p <- read.csv(file = "./data/peta.csv", sep=",", header = TRUE)
 ```
 
 

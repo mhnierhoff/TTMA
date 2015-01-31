@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-01-22 00:11:10 CET"
+## [1] "2015-01-31 22:07:35 CET"
 ```
 
 
@@ -22,15 +22,15 @@ Related Twitter Accounts:
 
 * [Amnesty International][1]
 
-        Number of analyzed tweets after cleaning: 557
+        Number of analyzed tweets after cleaning: 587
 
 * [American Red Cross][2] 
 
-        Number of analyzed tweets after cleaning: 401
+        Number of analyzed tweets after cleaning: 404
 
 * [PETA][3] 
         
-        Number of analyzed tweets after cleaning: 548
+        Number of analyzed tweets after cleaning: 531
 
 ***
 
@@ -100,7 +100,7 @@ sessionInfo()
 ## loaded via a namespace (and not attached):
 ##  [1] bit_1.1-12      bit64_0.9-4     DBI_0.3.1       digest_0.6.8   
 ##  [5] evaluate_0.5.5  formatR_1.0     htmltools_0.2.6 httr_0.6.1.9000
-##  [9] knitr_1.9       memoise_0.2.1   rjson_0.2.15    rmarkdown_0.4.2
+##  [9] knitr_1.9       memoise_0.2.1   rjson_0.2.15    rmarkdown_0.5.1
 ## [13] stringr_0.6.2   tools_3.1.2     twitteR_1.1.8   yaml_2.1.13
 ```
 

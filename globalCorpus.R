@@ -31,7 +31,7 @@ getTermMatrix <- memoise(function(account) {
         if(!(account %in% accounts))
                 stop("Unknown account")
         
-        tweets <- readLines(sprintf("./%s.csv", account))
+        tweets <- readLines(sprintf("./data/%s.csv", account))
 
 ## Build the corpus, and specify the source to be character vectors 
 myCorpus <- Corpus(VectorSource(tweets))

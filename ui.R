@@ -29,7 +29,6 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
-        library(shinyapps),
         library(BH),
         library(qdap)))
 
@@ -45,8 +44,6 @@ shinyUI(navbarPage("Twitter Text Mining",
 ## NAVTAB 1 - Wordcloud and Word-Letter Ratio Plot
 
         tabPanel("Words",
-                
-                 progressInit(),
                  
                  tags$head(includeScript("./www/ga-ttma.js")),
                  
@@ -220,7 +217,7 @@ tabPanel("Association Plot",
         tags$hr(),
 
         tags$span(style="color:grey", 
-                  tags$footer(("© 2015 - "), 
+                  tags$footer(("2015 - Created by"), 
                               tags$a(
                                       href="http://nierhoff.info",
                                       target="_blank",

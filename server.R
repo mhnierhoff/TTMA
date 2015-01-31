@@ -29,7 +29,6 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
-        library(shinyapps),
         library(BH),
         library(qdap)))
 
