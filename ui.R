@@ -43,49 +43,49 @@ shinyUI(navbarPage("Twitter Text Mining",
 
 ## NAVTAB 1 - Wordcloud and Word-Letter Ratio Plot
 
-        tabPanel("Words",
+tabPanel("Words",
+         
+         tags$head(includeScript("./www/ga-ttma.js")),
+         
+         sidebarLayout(
                  
-                 tags$head(includeScript("./www/ga-ttma.js")),
-                 
-                 sidebarLayout(
-                                  
-                         sidebarPanel(
-                                 radioButtons(inputId = "tdmwc",
-                                              label = "Select Twitter account:",
-                                              choices = accounts),
+                 sidebarPanel(
+                         radioButtons(inputId = "tdmwc",
+                                      label = "Select Twitter account:",
+                                      choices = accounts),
                          
-                                 tags$hr(),
-                                 
-                                 sliderInput("minfreqWord", 
-                                             label = "Minimum frequency 
+                         tags$hr(),
+                         
+                         sliderInput("minfreqWord", 
+                                     label = "Minimum frequency 
                                              of plotted words:",
-                                             min = 5, max = 25, value = 10),
-                                 
-                                 tags$hr(),
-                                 
-                                 sliderInput("maxfreqWord", 
-                                             "Maximum number 
-                                             of plotted words:", 
-                                             min = 1,  max = 200,  value = 100),
-                                 
-                         width = 3),
+                                     min = 5, max = 25, value = 10),
                          
-                         mainPanel(
+                         tags$hr(),
+                         
+                         sliderInput("maxfreqWord", 
+                                     "Maximum number 
+                                             of plotted words:", 
+                                     min = 1,  max = 200,  value = 100),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         tabsetPanel(
                                  
-                                 tabsetPanel(
-                                         
-                                         tabPanel("Wordcloud",
-                                                  
-                                                  plotOutput("wordPlot")),
-                                         
-                                         tabPanel("Word-Letter Ratio",
-                                                  
-                                                  plotOutput("ratioPlot"))
-                                ),
+                                 tabPanel("Wordcloud",
+                                          
+                                          plotOutput("wordPlot")),
                                  
-                        width = 6)
-                )
-        ),
+                                 tabPanel("Word-Letter Ratio",
+                                          
+                                          plotOutput("ratioPlot"))
+                         ),
+                         
+                         width = 6)
+         )
+),
 
 ############################### ~~~~~~~~2~~~~~~~~ ##############################
 
@@ -152,78 +152,78 @@ tabPanel("Association Plot",
 
 ## NAVTAB 4 - Term Frequency Plot & Table
 
-        tabPanel("Term Frequency",
-                
-                sidebarLayout(
-                        
-                        sidebarPanel(
-                                radioButtons(inputId = "tdmtf",
-                                             label = "Select Twitter account:",
-                                             choices = accounts),
-                                
-                                tags$hr(),
-                                
-                                sliderInput("freqNumber", 
-                                            label = "Minimum frequency of terms:",
-                                            min = 10, max = 50, value = 15),
-                                
-                                width = 3),
-                
-                        mainPanel(
-                        
-                    
-                                tabsetPanel(
-                            
-                            
-                                        tabPanel("Chart",
-                                     
-                                     
-                                                 plotOutput("freqPlot")),
-                                
-                            
-                            
-                                        tabPanel("Table",
-                        
-                                     
-                                                 dataTableOutput("freqTable"))
-                                
-                                ),
-                        
-                        width = 6)
-                
-                )
-        
-        ),
+tabPanel("Term Frequency",
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tdmtf",
+                                      label = "Select Twitter account:",
+                                      choices = accounts),
+                         
+                         tags$hr(),
+                         
+                         sliderInput("freqNumber", 
+                                     label = "Minimum frequency of terms:",
+                                     min = 10, max = 50, value = 15),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         
+                         tabsetPanel(
+                                 
+                                 
+                                 tabPanel("Chart",
+                                          
+                                          
+                                          plotOutput("freqPlot")),
+                                 
+                                 
+                                 
+                                 tabPanel("Table",
+                                          
+                                          
+                                          dataTableOutput("freqTable"))
+                                 
+                         ),
+                         
+                         width = 6)
+                 
+         )
+         
+),
 
 ############################### ~~~~~~~~A~~~~~~~~ ##############################
 
 ## About
-       
-        tabPanel("About",
-                fluidRow(
-                        column(1,
-                               p("")),
-                        column(10,
-                               includeMarkdown("./expl.md")),
-                        column(1,
-                               p(""))
-                        )
-                ),
-        
+
+tabPanel("About",
+         fluidRow(
+                 column(1,
+                        p("")),
+                 column(10,
+                        includeMarkdown("./expl.md")),
+                 column(1,
+                        p(""))
+         )
+),
+
 ############################### ~~~~~~~~F~~~~~~~~ ##############################
 
 ## Footer
 
-        tags$hr(),
+tags$hr(),
 
-        tags$span(style="color:grey", 
-                  tags$footer(("2015 - Created by"), 
-                              tags$a(
-                                      href="http://nierhoff.info",
-                                      target="_blank",
-                                      "Maximilian H. Nierhoff."), 
-                              align = "center")
-                
-                )
-        )
+tags$span(style="color:grey", 
+          tags$footer(("2015 - Created by"), 
+                      tags$a(
+                              href="http://nierhoff.info",
+                              target="_blank",
+                              "Maximilian H. Nierhoff."), 
+                      align = "center")
+          
+)
+)
 )
