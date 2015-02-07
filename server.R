@@ -240,8 +240,8 @@ freqPlotInput <- function() {
         freqPlot <- ggplot(freq.df, aes(x = term, y = freq, fill = freq)) 
         freqPlot + geom_bar(width = 0.7, stat = "identity") +
                 labs(title = "Most Frequent Terms") +
-                labs(y = "Terms") + 
-                labs(x = "Count") + 
+                labs(y = "Count") + 
+                labs(x = "Terms") + 
                 coord_flip() +
                 theme_bw()
 }
