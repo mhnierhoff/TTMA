@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-02-02 22:56:19 CET"
+## [1] "2015-02-07 15:44:04 CET"
 ```
 
 
@@ -76,6 +76,7 @@ library(rjson)
 library(bit64)
 library(httr)
 library(plyr)
+library(shinythemes)
 ```
 
 ***
@@ -84,24 +85,46 @@ library(plyr)
 
 
 ```r
-sessionInfo()
+devtools::session_info()
 ```
 
 ```
-## R version 3.1.2 (2014-10-31)
-## Platform: x86_64-apple-darwin13.4.0 (64-bit)
-## 
-## locale:
-## [1] de_DE.UTF-8/de_DE.UTF-8/de_DE.UTF-8/C/de_DE.UTF-8/de_DE.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## loaded via a namespace (and not attached):
-##  [1] bit_1.1-12      bit64_0.9-4     DBI_0.3.1       digest_0.6.8   
-##  [5] evaluate_0.5.5  formatR_1.0     htmltools_0.2.6 httr_0.6.1.9000
-##  [9] knitr_1.9       memoise_0.2.1   rjson_0.2.15    rmarkdown_0.5.1
-## [13] stringr_0.6.2   tools_3.1.2     twitteR_1.1.8   yaml_2.1.13
+## Session info --------------------------------------------------------------
+```
+
+```
+##  setting  value                       
+##  version  R version 3.1.2 (2014-10-31)
+##  system   x86_64, darwin13.4.0        
+##  ui       X11                         
+##  language (EN)                        
+##  collate  de_DE.UTF-8                 
+##  tz       Europe/Berlin
+```
+
+```
+## Packages ------------------------------------------------------------------
+```
+
+```
+##  package    * version    date       source                              
+##  bit        * 1.1-12     2014-04-09 CRAN (R 3.1.0)                      
+##  bit64      * 0.9-4      2014-04-09 CRAN (R 3.1.0)                      
+##  DBI        * 0.3.1      2014-09-24 CRAN (R 3.1.1)                      
+##  devtools   * 1.7.0      2015-01-17 CRAN (R 3.1.2)                      
+##  digest     * 0.6.8      2014-12-31 CRAN (R 3.1.2)                      
+##  evaluate   * 0.5.5      2014-04-29 CRAN (R 3.1.0)                      
+##  formatR    * 1.0        2014-08-25 CRAN (R 3.1.1)                      
+##  htmltools  * 0.2.6      2014-09-08 CRAN (R 3.1.1)                      
+##  httr       * 0.6.1.9000 2015-01-09 Github (hadley/httr@778ed3c)        
+##  knitr      * 1.9        2015-01-20 CRAN (R 3.1.2)                      
+##  memoise    * 0.2.1      2014-04-22 CRAN (R 3.1.0)                      
+##  rjson      * 0.2.15     2014-11-03 CRAN (R 3.1.2)                      
+##  rmarkdown  * 0.5.1      2015-01-26 CRAN (R 3.1.2)                      
+##  rstudioapi * 0.2        2014-12-31 CRAN (R 3.1.2)                      
+##  stringr    * 0.6.2      2012-12-06 CRAN (R 3.1.2)                      
+##  twitteR    * 1.1.8      2015-01-09 Github (geoffjentry/twitteR@964f2d0)
+##  yaml       * 2.1.13     2014-06-12 CRAN (R 3.1.0)
 ```
 
 

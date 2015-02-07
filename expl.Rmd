@@ -82,6 +82,7 @@ library(rjson)
 library(bit64)
 library(httr)
 library(plyr)
+library(shinythemes)
 ```
 
 ***
@@ -89,7 +90,7 @@ library(plyr)
 ### Last Session Info
 
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```
 
 

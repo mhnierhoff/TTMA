@@ -18,6 +18,7 @@ suppressPackageStartupMessages(c(
         library(NLP),
         library(tm),
         library(shinyIncubator),
+        library(shinythemes),
         library(grid),
         library(pvclust),
         library(Rgraphviz),

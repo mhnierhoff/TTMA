@@ -18,6 +18,7 @@ suppressPackageStartupMessages(c(
         library(NLP),
         library(tm),
         library(shinyIncubator),
+        library(shinythemes),
         library(grid),
         library(pvclust),
         library(Rgraphviz),
@@ -35,7 +36,7 @@ suppressPackageStartupMessages(c(
 
 shinyUI(navbarPage("Twitter Text Mining", 
                  
-                   theme = "customflatly.css",
+                   theme = shinytheme("flatly"),
                    
 
 
