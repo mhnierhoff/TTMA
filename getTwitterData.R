@@ -37,8 +37,3 @@ RedCross.df <- twListToDF(RedCross_tweets)
 write.csv(Amnesty.df[,1], file = "./data/amnesty.csv")
 write.csv(PETA.df[,1], file = "./data/peta.csv")
 write.csv(RedCross.df[,1], file = "./data/redcross.csv")
-
-## Save the whole DF as .csv file for topic modelling
-write.csv(Amnesty.df, file = "./data/amnestyDF.csv")
-write.csv(PETA.df, file = "./data/petaDF.csv")
-write.csv(RedCross.df, file = "./data/redcrossDF.csv")
