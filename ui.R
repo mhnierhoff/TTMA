@@ -46,7 +46,7 @@ shinyUI(navbarPage("Twitter Text Mining",
 
 tabPanel("Words",
          
-         tags$head(includeScript("./www/ga-ttma.js")),
+         tags$head(includeScript("./js/ga-ttma.js")),
          
          sidebarLayout(
                  
