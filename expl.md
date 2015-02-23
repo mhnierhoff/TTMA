@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-02-19 00:14:41 CET"
+## [1] "2015-02-23 13:46:59 CET"
 ```
 
 
@@ -22,15 +22,15 @@ Related Twitter Accounts:
 
 * [Amnesty International][1]
 
-        Number of analyzed tweets after cleaning: 606
+        Number of analyzed tweets after cleaning: 617
 
 * [American Red Cross][2] 
 
-        Number of analyzed tweets after cleaning: 398
+        Number of analyzed tweets after cleaning: 403
 
 * [PETA][3] 
         
-        Number of analyzed tweets after cleaning: 649
+        Number of analyzed tweets after cleaning: 909
 
 ***
 
